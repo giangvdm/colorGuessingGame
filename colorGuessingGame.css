@@ -1,0 +1,93 @@
+/* Global styling */
+html {
+    height: 100%;
+    background-color: #232323;
+}
+
+body {
+    text-transform: uppercase;
+}
+/* */
+
+/* Styling for header */
+#header {
+    text-align: center;
+    background-color: rgb(202, 179, 136);
+    transition: background 0.75s;
+    -webkit-transition: background 0.75s;
+    -moz-transition: background 0.75s;
+}
+
+#color-display {
+    font-size: 2em;
+}
+/* */
+
+/* Styling for functional bar and all items within */
+#func-bar {
+    font-weight: 700;
+    text-align: center;
+    background-color: white;
+    height: 3em;
+}
+
+/* Buttons */
+.func-btn {
+    padding: 11px;
+    border: none;
+    background-color: white;
+    outline: none;
+    color: rgb(202, 179, 136);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+}
+
+.func-btn:hover {
+    background-color: rgb(202, 179, 136);
+    color: white;
+}
+
+/* Current active mode indicative effect */
+.mode-active {
+    background-color: rgb(202, 179, 136);
+    color: white;
+}
+
+span#message {
+    display: inline-block;
+    width: 20%;
+}
+
+span#difficulty-display {
+    display: inline-block;
+    width: 3%;
+}
+/* */
+
+/* Styling for color display zone */
+#colors-zone {
+    background-color: #232323;
+}
+
+#color-container {
+    max-width: 80%;
+}
+
+.color-choice {
+    width: 30%;
+    margin: 1.66%;
+    padding-bottom: 30%;
+    background: white;
+    float: left;
+    border-radius: 50px;
+    transition: background 0.75s;
+    -webkit-transition: background 0.75s;
+    -moz-transition: background 0.75s;
+}
+
+/* Styling for wrong choices */ /* JS will make use of this class (add/remove) */
+.wrong {
+    background-color: #232323 !important;
+    transition: 0.5s;
+}

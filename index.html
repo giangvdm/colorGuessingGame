@@ -14,12 +14,14 @@
 <body>
     <!-- Header -->
     <div class="container-fluid" id="header">
-        <h1>
+        <h1 id="game-name">
             The Great
             <br>
             <span id="color-display">color</span>
             <br> Guessing Game!
         </h1>
+        <hr>
+        <span id="instruction" data-toggle="modal" data-target="#myModal">click here for instructions</span>
     </div>
 
     <!-- Functional bar -->
@@ -44,6 +46,42 @@
         </div>
     </div>
 
+    <!-- Instruction Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Color Guessing Game</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        In the header, you'll see an RGB color code.<br>
+                        In case you don't know what RGB is, it stands for Red-Green-Blue;<br>
+                        and then comes the 3 numbers, which are the portion of each element color;<br>
+                        each number takes the minimum value of 0, and maximum of 255.<br>
+                        What you have to do, is somehow use the given RGB code to calculate the result color,<br>
+                        and then select from those choices of color below.<br>
+                        <br>
+                        Don't worry if you got it wrong several times, there is no penalty in this game.<br>
+                        Just try to have fun with the game.<br>
+                        <br>
+                        You can start a new game, to get a new color to guess by clicking <em>New Color</em> button anytime.<br>
+                        To set difficulty, simply click on the <em>Difficulty</em> button.<br>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Got it, let's give it a try!</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="colorGuessingGame.js"></script>
 </body>
 

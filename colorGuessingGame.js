@@ -2,7 +2,7 @@ var randomColorPool = []; // The pool storing random choices of color
 var correctColor; // The one and only correct choice of color
 var colorChoices = document.getElementsByClassName("color-choice"); // The squares that hold each color in the pool
 var messageDisplay = document.getElementById("message-display"); // Message display area
-var difficulty = 6; // default = hard
+var difficulty = 6; // default = medium
 var difficultyDisplay = document.getElementById("difficulty-display"); // Where difficulty is shown
 var resetButton = document.querySelector("button#reset"); // New Color/Reset button
 var cycleDifficultyButton = document.querySelector("button#cycle-difficulty"); // Set difficutly button
@@ -19,7 +19,7 @@ cycleDifficultyButton.addEventListener("click", function() {
     difficulty = cycleDifficulty(); // cycle difficulty
     showDifficulty(); // show it
     reset(); // AND reset the game
-    // Hide the 3 remaining squares (works if difficulty = easy)
+    // Hide the redundant squares (works for difficulty = easy/medium)
     hideRedundantChoices();
 });
 /* Done preparing */
@@ -31,8 +31,12 @@ cycleDifficultyButton.addEventListener("click", function() {
 // Show current difficulty
 showDifficulty();
 
+// Hide the last 3 redundant choices since difficulty is currently hard-coded to 6
+// Please comment this function out when difficulty is hard-coded to 9
+hideRedundantChoices();
+
 // Initiate the colors pool
-randomColorPool = initPool(difficulty);
+randomColorPool = initPool();
 
 // Pick the one correct choice of color
 var randomNumber = Math.floor(Math.random() * randomColorPool.length);
@@ -131,24 +135,47 @@ function reset() {
     initChoices();
 }
 
-// Cycle between easy (3) and hard (6)
+// Cycle among easy (3), medium (6) and hard (9)
 function cycleDifficulty() {
-    if (difficulty === 6) return 3;
-    return 6;
+    if (difficulty === 3) {
+        return 6;
+    }
+    else if (difficulty === 6) {
+        return 9;
+    }
+    else return 3;
 }
 
 // Show difficulty
 function showDifficulty() {
-    (difficulty === 6) ? difficultyDisplay.textContent = "Hard" : difficultyDisplay.textContent = "Easy";
+    if (difficulty === 3) {
+        difficultyDisplay.textContent = "Easy";
+    }
+    else if (difficulty === 6) {
+        difficultyDisplay.textContent = "Medium";
+    }
+    else difficultyDisplay.textContent = "Hard";
 }
 
-// Hide redundant choices, works for easy mode when there are only 3 choices instead of 6 (by default)
+// Hide redundant choices, works for easy and medium modes when there are only 3 or 6 instead of full 9
 function hideRedundantChoices() {
-    for (var i = 3; i < 6; i++) {
-        if (difficulty === 3) {
-            colorChoices[i].style.visibility = "hidden";
+    if (difficulty === 3) {
+        for (var i = 3; i < 9; i++) {
+            colorChoices[i].style.visibility = "hidden"; // just hide the last 6 choices
         }
-        else colorChoices[i].style.visibility = "visible";
+    }
+    else if (difficulty === 6) {
+        for (var i = 3; i < 6; i++) {
+            colorChoices[i].style.visibility = "visible"; // show the choices #3 to #6
+        }
+        for (var i = 6; i < 9; i++) {
+            colorChoices[i].style.visibility = "hidden"; // hide the last 3
+        }
+    }
+    else {
+        for (var i = 0; i < 9; i++) {
+            colorChoices[i].style.visibility = "visible"; // show all choices
+        }
     }
 }
 
